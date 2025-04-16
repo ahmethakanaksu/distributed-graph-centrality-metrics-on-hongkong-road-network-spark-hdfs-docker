@@ -88,6 +88,13 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && \
 
 COPY ssh_config ~/.ssh/config
 
+# load metric implementation
+COPY ./betweenness.py ./betweenness.py
+COPY ./accessibility.py ./accessibility.py
+COPY ./closeness.py ./closeness.py
+COPY ./degree.py ./degree.py
+COPY ./node-edge.py ./node-edge.py
+COPY ./pagerank.py ./pagerank.py
 
 # Copy Data
 COPY ./Hongkong.co ./Hongkong.co
@@ -100,6 +107,8 @@ COPY ./metrics ./metrics
 
 # Copy appropriate entrypoint script
 COPY entrypoint-yarn.sh entrypoint.sh
+
+RUN chmod -R 777 ./entrypoint.sh
 
 EXPOSE 22
 
